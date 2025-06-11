@@ -8,9 +8,8 @@ info:
     A Paypal phishing website was detected
   reference:
     - https://paypal.com
-  metadata:
-    max-request: 1
   tags: phishing,paypal,osint
+
 http:
   - method: GET
     path:
@@ -32,4 +31,4 @@ http:
       - type: dsl
         dsl:
           - '!contains(host,"paypal.com")'
-# digest: 4b0a00483046022100cc4fdcee08283e63e7d216e78703f85d5675ea2672f30e9c1be12b18e1685343022100e9b353fa91932af9f0cad73d3650556f50039e8665ba8ce4b9c8f0ee83a2e6b5:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a00473045022100a7e3eaee9cb010cd057954d3956d74a78cf3e0d34ed91a9f9e6f0051f85e6b3102203d8782fc83d6ff6d67ce2d969c048d39fd5e3698f6af47bd3be632e4b30a4ed9:922c64590222798bb761d5b6d8e72950

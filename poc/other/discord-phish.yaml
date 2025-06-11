@@ -8,9 +8,8 @@ info:
     A Discord phishing website was detected
   reference:
     - https://discord.com
-  metadata:
-    max-request: 1
   tags: phishing,discord,osint
+
 http:
   - method: GET
     path:
@@ -32,4 +31,4 @@ http:
       - type: dsl
         dsl:
           - '!contains(host,"discord.com")'
-# digest: 4a0a00473045022100ee3e503140bf9cb92ae3944fdf8b2f8b23abdc70fe1dedcc1d76ac4cec45504402200260530499501c5ed0a36db7ee826c43363ac09be17bb70cf59b91ada2e59c9d:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a00473045022100e9824a6adee6c9397d3d7c398e39247414839c5dd55baa8a21c05d222e06f13a02205f39ea3ea4d011310687bfb3952149a757465f96019e17dd13a2ba79ff10c0fd:922c64590222798bb761d5b6d8e72950
