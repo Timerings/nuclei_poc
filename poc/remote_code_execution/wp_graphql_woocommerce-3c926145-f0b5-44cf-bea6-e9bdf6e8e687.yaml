@@ -2,7 +2,7 @@ id: wp_graphql_woocommerce-3c926145-f0b5-44cf-bea6-e9bdf6e8e687
 
 info:
   name: >
-    WPGraphQL WooCommerce <= 0.11.0 - Information Disclosure
+    WPGraphQL WooCommerce <= 0.12.3 - Information Disclosure
   author: topscoder
   severity: low
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 0.11.0')
+          - compare_versions(version, '<= 0.12.3')

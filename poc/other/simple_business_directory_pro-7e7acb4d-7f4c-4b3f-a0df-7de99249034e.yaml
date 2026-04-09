@@ -2,7 +2,7 @@ id: simple_business_directory_pro-7e7acb4d-7f4c-4b3f-a0df-7de99249034e
 
 info:
   name: >
-    Simple Business Directory Pro <= 15.4.8 - Unauthenticated Privilege Escalation
+    Simple Business Directory Pro < 15.6.9 - Unauthenticated Privilege Escalation
   author: topscoder
   severity: low
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 15.4.8')
+          - compare_versions(version, '< 15.6.9')

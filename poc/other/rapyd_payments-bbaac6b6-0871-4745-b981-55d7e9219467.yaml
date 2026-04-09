@@ -2,7 +2,7 @@ id: rapyd_payments-bbaac6b6-0871-4745-b981-55d7e9219467
 
 info:
   name: >
-    Rapyd Payment Extension for WooCommerce <= 1.1.9 - Unauthenticated PHP Object Injection
+    Rapyd Payment Extension for WooCommerce <= 1.2.0 - Unauthenticated PHP Object Injection
   author: topscoder
   severity: critical
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Version: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Version: ([0-9.]+)"
+          - "(?mi)Version:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 1.1.9')
+          - compare_versions(version, '<= 1.2.0')

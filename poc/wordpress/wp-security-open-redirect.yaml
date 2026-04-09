@@ -16,9 +16,10 @@ info:
     cwe-id: CWE-601
   metadata:
     verified: true
+    max-request: 1
   tags: wp-plugin,redirect,wordpress,wp,wpscan
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/?aiowpsec_do_log_out=1&after_logout=https://interact.sh"
@@ -29,4 +30,4 @@ requests:
         regex:
           - '(?m)^(?:Location\s*?:\s*?)(?:https?:\/\/|\/\/|\/\\\\|\/\\)(?:[a-zA-Z0-9\-_\.@]*)interact\.sh\/?(\/|[^.].*)?$' # https://regex101.com/r/L403F0/1
 
-# Enhanced by md on 2022/10/19
+# digest: 4a0a0047304502210095023b56d6b5f8de96d1dea251a65281724b07248b2ee51345773ddb460cc3850220369474107f2fcc1da0b33794286d4f7c77f20fc9350a684b3b5f6484bafe55e6:922c64590222798bb761d5b6d8e72950

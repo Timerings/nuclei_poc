@@ -2,7 +2,7 @@ id: media_hygiene-d105cae2-2442-4726-bbe8-2edbd1e7a28c
 
 info:
   name: >
-    Media Hygiene <= 4.0.1 - Missing Authorization
+    Media Hygiene <= 4.0.2 - Missing Authorization
   author: topscoder
   severity: high
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 4.0.1')
+          - compare_versions(version, '<= 4.0.2')

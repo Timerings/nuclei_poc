@@ -2,7 +2,7 @@ id: magone-afc20673-5665-4058-9d77-ebe9c03df46f
 
 info:
   name: >
-    MagOne <= 8.5 - Reflected Cross-Site Scripting
+    MagOne <= 8.8 - Reflected Cross-Site Scripting
   author: topscoder
   severity: medium
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Version: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Version: ([0-9.]+)"
+          - "(?mi)Version:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 8.5')
+          - compare_versions(version, '<= 8.8')

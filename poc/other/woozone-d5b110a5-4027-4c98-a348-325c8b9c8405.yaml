@@ -2,7 +2,7 @@ id: woozone-d5b110a5-4027-4c98-a348-325c8b9c8405
 
 info:
   name: >
-    WooCommerce Amazon Affiliates - Wordpress Plugin <= 14.0.10 - Authenticated (Subscriber+) Privilege Escalation
+    WooCommerce Amazon Affiliates - Wordpress Plugin < 14.1.00 - Authenticated (Subscriber+) Privilege Escalation
   author: topscoder
   severity: low
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 14.0.10')
+          - compare_versions(version, '< 14.1.00')

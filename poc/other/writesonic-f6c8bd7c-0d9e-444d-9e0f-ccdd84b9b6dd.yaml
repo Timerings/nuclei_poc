@@ -2,7 +2,7 @@ id: writesonic-f6c8bd7c-0d9e-444d-9e0f-ccdd84b9b6dd
 
 info:
   name: >
-    Writesonic <= 1.0.4 - Cross-Site Request Forgery
+    Writesonic <= 1.0.5 - Cross-Site Request Forgery
   author: topscoder
   severity: medium
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 1.0.4')
+          - compare_versions(version, '<= 1.0.5')
