@@ -2,7 +2,7 @@ id: ameliabooking-8d7cc468-eeba-497f-9e11-79d4bebdd7a2
 
 info:
   name: >
-    Booking for Appointments and Events Calendar – Amelia <= 2.1.2 - Unauthenticated Authorization Bypass via Remote Approval Endpoint
+    Booking for Appointments and Events Calendar – Amelia <= 2.2.1 - Unauthenticated Authorization Bypass via Remote Approval Endpoint
   author: topscoder
   severity: high
   description: >
@@ -48,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 2.1.2')
+          - compare_versions(version, '<= 2.2.1')
