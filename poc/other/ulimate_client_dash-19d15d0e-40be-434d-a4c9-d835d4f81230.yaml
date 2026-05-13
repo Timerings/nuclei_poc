@@ -2,7 +2,7 @@ id: ulimate_client_dash-19d15d0e-40be-434d-a4c9-d835d4f81230
 
 info:
   name: >
-    Ultimate Client Dash <= 4.6 - Authenticated (Administrator+) Stored Cross-Site Scripting
+    Ultimate Client Dash <= 4.7 - Authenticated (Administrator+) Stored Cross-Site Scripting
   author: topscoder
   severity: low
   description: >
@@ -48,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 4.6')
+          - compare_versions(version, '<= 4.7')
