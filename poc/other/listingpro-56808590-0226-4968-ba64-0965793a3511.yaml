@@ -2,7 +2,7 @@ id: listingpro-56808590-0226-4968-ba64-0965793a3511
 
 info:
   name: >
-    ListingPro <= 2.9.4 - Authenticated (Subscriber+) Local File Inclusion
+    ListingPro <= 2.9.3 - Authenticated (Subscriber+) Local File Inclusion
   author: topscoder
   severity: low
   description: >
@@ -32,8 +32,16 @@ http:
         name: version
         part: body
         group: 1
+        internal: true
         regex:
-          - "(?mi)Version:\\s*([0-9.]+)"
+          - "(?mi)Version: ([0-9.]+)"
+
+      - type: regex
+        name: version
+        part: body
+        group: 1
+        regex:
+          - "(?mi)Version: ([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -48,4 +56,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 2.9.4')
+          - compare_versions(version, '<= 2.9.3')

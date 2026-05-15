@@ -20,10 +20,9 @@ info:
 variables:
   callback: "{{interactsh-url}}"
   bypass_id: "{{randstr}}"
-  ws_base: "{{replace(replace(BaseURL, 'https://', 'wss://'), 'http://', 'ws://')}}"
 
 websocket:
-  - address: "{{ws_base}}/ws"
+  - address: "ws://{{Hostname}}/ws"
 
     inputs:
       # Test 1: No authentication
@@ -46,21 +45,22 @@ websocket:
 
     matchers-condition: or
     matchers:
-      - type: regex
+      - type: word
         part: response
-        regex:
-          - '"authenticated"\s*:\s*true'
-          - '"role"\s*:\s*"admin"'
+        words:
+          - '"authenticated":true'
+          - '"role":"admin"'
+          - '"success":true'
           - 'Welcome admin'
-        condition: or
 
-      - type: dsl
-        dsl:
-          - '(interactsh_protocol == "http" || interactsh_protocol == "dns") && contains(interactsh_request, "ws-{{bypass_id}}")'
+      - type: word
+        part: interactsh_protocol
+        words:
+          - "http"
+          - "dns"
 
-  - address: "{{ws_base}}/ws"
-    headers:
-      Origin: "https://evil.com"
+  - address: "wss://{{Hostname}}/ws"
+    origin: "https://evil.com"
 
     inputs:
       # Test origin validation bypass
@@ -72,9 +72,9 @@ websocket:
         words:
           - "connected"
           - "authenticated"
-        condition: and
+        negative: false
 
-  - address: "{{ws_base}}/socket.io/?transport=websocket"
+  - address: "ws://{{Hostname}}/socket.io/?transport=websocket"
 
     inputs:
       # Socket.IO specific bypass
@@ -86,28 +86,18 @@ websocket:
         part: response
         regex:
           - '43\["authenticated"'
-        condition: or
+          - '"sid":"[a-zA-Z0-9]+"'
 
-  - address: "{{ws_base}}/graphql-ws"
+  - address: "ws://{{Hostname}}/graphql-ws"
 
     inputs:
       # GraphQL subscription bypass
       - data: '{"type":"connection_init","payload":{"authorization":""}}'
       - data: '{"type":"start","payload":{"query":"subscription { adminData }"}}'
 
-    matchers-condition: and
     matchers:
       - type: word
         part: response
         words:
           - "connection_ack"
           - '"data":'
-        condition: and
-      - type: word
-        part: response
-        words:
-          - "unauthorized"
-          - "forbidden"
-          - "invalid token"
-        condition: or
-        negative: true

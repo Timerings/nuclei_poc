@@ -1,30 +1,28 @@
 id: eatery-restaurant-open-redirect
-
 info:
-  name: WordPress Eatery 2.2 - Open Redirect
-  author: 0x_Akoko
-  severity: medium
-  description: |
-    WordPress Eatery theme 2.2 contains an open redirect vulnerability. The theme accepts a user-controlled input that specifies a link to an external site. An attacker can redirect a user to a malicious site and possibly obtain sensitive information, modify data, and/or execute unauthorized operations.
-  reference:
-    - https://cxsecurity.com/issue/WLB-2020030183
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
-    cvss-score: 6.1
-    cwe-id: CWE-601
-  metadata:
-    max-request: 1
-  tags: wordpress,wp-theme,redirect,wp
+  name: WordPress Attitude Themes 1.1.1 Open Redirection
+  author:
+  - l0ne1y
+  description: |-
+    WordPress Theme Attitude 存在URL重定向
+    WordPress是Wordpress基金会的一套使用PHP语言开发的博客平台。该平台支持在PHP和MySQL的服务器上架设个人博客网站。
 
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}/wp-content/themes/eatery/nav.php?-Menu-=https://interact.sh/"
+    WordPress Attitude Themes 1.1.1版本及之前版本的nav.php存在输入验证错误漏洞，导致用户重定向到它之前不验证 的-Menu-参数。
+  severity: low
+  remediation: |-
+    官方修复方案：
+    1、建议用户到官方获取最新补丁或者最新版本程序：https://wordpress.org/themes/
 
-    matchers:
-      - type: regex
-        part: header
-        regex:
-          - '(?m)^(?:Location\s*?:\s*?)(?:https?://|//)?(?:[a-zA-Z0-9\-_\.@]*)interact\.sh.*$'
-
-# digest: 490a00463044022016e78bedb3e37369fe8f5a989392a7620f686cddaa5b114d78016e1948e20383022074d72d9e09524eabb7024b1550a1b7bb4849052b090f96b7935cb5a3ddb54dcd:922c64590222798bb761d5b6d8e72950
+    临时修复方案：
+    1、代码固定跳转地址，不让用户控制变量。
+    2、跳转目标地址采用白名单映射机制、只对合法的 URL 做跳转。
+    3、合理充分的校验校验跳转的目标地址，非己方地址时告知用户跳转风险。
+requests:
+- matchers:
+  - type: regex
+    part: header
+    regex:
+    - (?m)^(?:Location\s*?:\s*?)(?:https?://|//)?(?:[a-zA-Z0-9\-_\.@]*)example\.com.*$
+  path:
+  - '{{BaseURL}}/wp-content/themes/eatery/nav.php?-Menu-=https://example.com/'
+  method: GET

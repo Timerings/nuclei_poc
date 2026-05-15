@@ -18,7 +18,6 @@ info:
 
 variables:
   callback_url: "{{interactsh-url}}"
-  subscription_id: "{{randstr}}"
 
 http:
   - method: POST
@@ -66,7 +65,7 @@ http:
       {
         "query": "mutation RegisterWebhook($url: String!) { registerWebhook(callbackUrl: $url) { id status } }",
         "variables": {
-          "url": "{{callback_url}}/register-{{subscription_id}}"
+          "url": "{{callback_url}}"
         }
       }
 
@@ -85,7 +84,7 @@ http:
       {
         "query": "mutation CreateSubscription($callback: String!) { createSubscription(webhookUrl: $callback) { subscriptionId } }",
         "variables": {
-          "callback": "{{callback_url}}/subscription-{{subscription_id}}"
+          "callback": "{{callback_url}}"
         }
       }
 
@@ -104,11 +103,10 @@ http:
       {
         "query": "mutation ImportSchema($url: String!) { importSchema(schemaUrl: $url) { success errors } }",
         "variables": {
-          "url": "{{callback_url}}/schema-{{subscription_id}}.graphql"
+          "url": "{{callback_url}}/schema.graphql"
         }
       }
 
-    matchers-condition: and
     matchers:
       - type: word
         part: interactsh_protocol
@@ -116,7 +114,3 @@ http:
           - "http"
           - "dns"
         condition: or
-      - type: word
-        part: interactsh_request
-        words:
-          - "{{subscription_id}}"

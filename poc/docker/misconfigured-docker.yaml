@@ -1,32 +1,32 @@
 id: misconfigured-docker
-
 info:
   name: Docker Container - Misconfiguration Exposure
-  author: dhiyaneshDK
+  author:
+  - l0ne1y
+  description: |-
+    Docker错误配置不当
+    利用 docker 错误配置，攻击者可以接管整个docker环境的权限。
   severity: critical
-  description: A Docker container misconfiguration was discovered. The Docker daemon can listen for Docker Engine API requests via three different types of Socket - unix, tcp, and fd. With tcp enabled, the default setup provides un-encrypted and un-authenticated direct access to the Docker daemon. It is conventional to use port 2375 for un-encrypted, and port 2376 for encrypted communication with the daemon.
-  reference:
-    - https://madhuakula.com/content/attacking-and-auditing-docker-containers-using-opensource/attacking-docker-containers/misconfiguration.html
-  metadata:
-    max-request: 1
-  tags: docker,unauth,devops
+  remediation: |-
+    官方修复方案：
+    升级系统至无漏洞版本，或于官网下载安全补丁
+    https://www.docker.com/get-started/
 
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}/images/json"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - '"ParentId":'
-          - '"Container":'
-          - '"Labels":'
-        condition: and
-
-      - type: status
-        status:
-          - 200
-
-# digest: 490a0046304402206549cc8572fa09f857c938bcdbecbd71db30295bb882b01d28b5ea08716164c9022028a299e64d568d94ab2c0bc20bb0edfd3a1f66f9c468d36144417ceb6fc1744b:922c64590222798bb761d5b6d8e72950
+    临时修复方案：
+    1.去除页面、cookie或缓存中涉及的敏感信息或删除泄露信息页面。
+    2.正确配置服务器以防止未经授权的访问、目录列表等信息。
+requests:
+- matchers:
+  - type: word
+    condition: and
+    words:
+    - '"ParentId":'
+    - '"Container":'
+    - '"Labels":'
+  - type: status
+    status:
+    - 200
+  matchers-condition: and
+  path:
+  - '{{BaseURL}}/images/json'
+  method: GET

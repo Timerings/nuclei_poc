@@ -99,7 +99,6 @@ http:
         "callback_url": "{{callback_url}}/protocol-{{downgrade_id}}"
       }
 
-    matchers-condition: and
     matchers:
       - type: word
         part: interactsh_protocol
@@ -107,10 +106,6 @@ http:
           - "http"
           - "dns"
         condition: or
-      - type: word
-        part: interactsh_request
-        words:
-          - "protocol-{{downgrade_id}}"
 
     extractors:
       - type: regex

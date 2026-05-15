@@ -2,7 +2,7 @@ id: qc_simple_link_directory-de920076-55a0-4f9a-9b4a-0e0d0edfc991
 
 info:
   name: >
-    Simple Link Directory Pro < 14.8.1 - Missing Authorization
+    Simple Link Directory Pro <= 14.7.3 - Missing Authorization
   author: topscoder
   severity: high
   description: >
@@ -32,8 +32,16 @@ http:
         name: version
         part: body
         group: 1
+        internal: true
         regex:
-          - "(?mi)Stable tag:\\s*([0-9.]+)"
+          - "(?mi)Stable tag: ([0-9.]+)"
+
+      - type: regex
+        name: version
+        part: body
+        group: 1
+        regex:
+          - "(?mi)Stable tag: ([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -48,4 +56,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '< 14.8.1')
+          - compare_versions(version, '<= 14.7.3')

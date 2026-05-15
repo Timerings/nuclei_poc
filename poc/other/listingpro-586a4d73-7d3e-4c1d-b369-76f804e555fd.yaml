@@ -2,7 +2,7 @@ id: listingpro-586a4d73-7d3e-4c1d-b369-76f804e555fd
 
 info:
   name: >
-    ListingPro <= 2.9.4 - Cross-Site Request Forgery to Account Takeover
+    ListingPro <= 2.9.3 - Cross-Site Request Forgery to Account Takeover
   author: topscoder
   severity: medium
   description: >
@@ -32,8 +32,16 @@ http:
         name: version
         part: body
         group: 1
+        internal: true
         regex:
-          - "(?mi)Version:\\s*([0-9.]+)"
+          - "(?mi)Version: ([0-9.]+)"
+
+      - type: regex
+        name: version
+        part: body
+        group: 1
+        regex:
+          - "(?mi)Version: ([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -48,4 +56,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 2.9.4')
+          - compare_versions(version, '<= 2.9.3')

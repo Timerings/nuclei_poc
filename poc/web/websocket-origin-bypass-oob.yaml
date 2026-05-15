@@ -20,16 +20,14 @@ info:
 
 variables:
   callback_url: "{{interactsh-url}}"
-  ws_base: "{{replace(replace(BaseURL, 'https://', 'wss://'), 'http://', 'ws://')}}"
 
 websocket:
-  - address: "{{ws_base}}{{ws_path}}"
-    payloads:
-      ws_path:
-        - "/ws"
-        - "/websocket"
-        - "/socket.io/"
-        - "/api/ws"
+  - address: "{{BaseURL}}"
+    path:
+      - "/ws"
+      - "/websocket"
+      - "/socket.io/"
+      - "/api/ws"
 
     headers:
       Origin: "{{callback_url}}"
@@ -49,28 +47,13 @@ websocket:
             "allowed_origins": ["{{callback_url}}"],
             "callback_url": "{{callback_url}}/validated"
           }
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: interactsh_protocol
-        words:
-          - "http"
-          - "dns"
-        condition: or
-      - type: word
-        part: interactsh_request
-        words:
-          - "origin-bypass"
-          - "validated"
-        condition: or
 
-  - address: "{{ws_base}}{{ws_path}}"
-    payloads:
-      ws_path:
-        - "/ws"
-        - "/websocket"
-        - "/socket.io/"
-        - "/api/ws"
+  - address: "{{BaseURL}}"
+    path:
+      - "/ws"
+      - "/websocket"
+      - "/socket.io/"
+      - "/api/ws"
 
     headers:
       Origin: "null"
@@ -84,26 +67,13 @@ websocket:
             "forwarded_host": "{{callback_url}}",
             "callback_url": "{{callback_url}}/null-origin"
           }
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: interactsh_protocol
-        words:
-          - "http"
-          - "dns"
-        condition: or
-      - type: word
-        part: interactsh_request
-        words:
-          - "null-origin"
 
-  - address: "{{ws_base}}{{ws_path}}"
-    payloads:
-      ws_path:
-        - "/ws"
-        - "/websocket"
-        - "/socket.io/"
-        - "/api/ws"
+  - address: "{{BaseURL}}"
+    path:
+      - "/ws"
+      - "/websocket"
+      - "/socket.io/"
+      - "/api/ws"
 
     headers:
       Origin: "{{Hostname}}.{{callback_url}}"
@@ -123,17 +93,11 @@ websocket:
             "trusted_domain": "{{callback_url}}",
             "redirect_callback": "{{callback_url}}/cors-success"
           }
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: interactsh_protocol
-        words:
-          - "http"
-          - "dns"
-        condition: or
-      - type: word
-        part: interactsh_request
-        words:
-          - "subdomain-bypass"
-          - "cors-success"
-        condition: or
+
+matchers:
+  - type: word
+    part: interactsh_protocol
+    words:
+      - "http"
+      - "dns"
+    condition: or
