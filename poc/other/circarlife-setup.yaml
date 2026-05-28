@@ -6,9 +6,9 @@ info:
   description: CirCarLife is an internet-connected electric vehicle charging station
   reference: https://circontrol.com/
   severity: critical
-  tags: scada,circontrorl,circarlife,setup,exposure
+  tags: scada,circontrol,circarlife,setup,exposure,panel
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/html/setup.html"

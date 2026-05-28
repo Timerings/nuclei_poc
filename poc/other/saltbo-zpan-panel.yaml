@@ -1,5 +1,4 @@
 id: saltbo-zpan-panel
-
 info:
   name: Saltbo/zpan Panel - Detect
   author: ritikchaddha
@@ -11,29 +10,24 @@ info:
   classification:
     cpe: cpe:2.3:a:saltbo:zpan:*:*:*:*:*:*:*:*
   metadata:
-    verified: true
-    max-request: 1
-    vendor: saltbo
-    product: zpan
     fofa-query: title="zpan"
+    max-request: 1
+    product: zpan
     shodan-query: title:"zpan"
-  tags: panel,zpan,login,detect
-
+    vendor: saltbo
+    verified: true
+  tags: detect,discovery,login,panel,zpan
 http:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    host-redirects: true
-
-    matchers-condition: and
+  - host-redirects: true
     matchers:
-      - type: word
-        part: body
+      - part: body
+        type: word
         words:
-          - "<title>ZPan"
-
-      - type: status
-        status:
+          - <title>ZPan
+      - status:
           - 200
-# digest: 4a0a004730450220798e7e4878e3e2429f73a2860831bc7e190adad47b26355b264383f61d3d04db022100b13efdebdb98ddfaa544d6db0cc1fb41b97c54491736cb5a43d4990de015dbdd:922c64590222798bb761d5b6d8e72950
+        type: status
+    matchers-condition: and
+    method: GET
+    path:
+      - '{{BaseURL}}'

@@ -3,11 +3,11 @@ id: unauthenticated-popup-upload
 info:
   name: Unauthenticated Popup File Uploader
   author: DhiyaneshDk
-  severity: low
+  severity: info
   reference: https://www.exploit-db.com/ghdb/6671
   tags: fileupload
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/RichWidgets/Popup_Upload.aspx"

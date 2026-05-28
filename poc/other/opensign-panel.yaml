@@ -10,10 +10,11 @@ info:
     - https://www.opensignlabs.com/
     - https://github.com/OpenSignLabs/OpenSign
   metadata:
+    runzero-match: any(each(service["html.titles"]), {# matches "(?i)opensign"})
     max-request: 2
     verified: true
     shodan-query: http.title:"opensign"
-  tags: panel,opensign,login,detect
+  tags: panel,opensign,login,detect,discovery
 
 http:
   - method: GET
@@ -28,4 +29,4 @@ http:
           - 'status_code == 200'
           - 'contains(body, "OpenSign")'
         condition: and
-# digest: 4a0a00473045022031c755870dc9f0b24aad8c0c465165194cd6fa68fa667b50fb17bcf2787551ea022100db4086567a00e65e03618e7bec21e036c11ff10fcfc1d75a4dc6ca753f5eca41:922c64590222798bb761d5b6d8e72950
+

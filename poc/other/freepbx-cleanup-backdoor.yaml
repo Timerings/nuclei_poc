@@ -7,6 +7,7 @@ info:
   description: |
     FreePBX backdoor cleanup script used in 0-day exploitation of CVE-2025-57819 was detected.
   metadata:
+    runzero-match: any(each(service["html.titles"]), {# matches "(?i)FreePBX"}) || service["favicon.ico.image.mmh3"] == "-1908328911" || service["favicon.ico.image.mmh3"] == "1574423538"
     verified: true
     max-request: 1
     vendor: sangoma
@@ -21,7 +22,7 @@ info:
       - icon_hash="1574423538"
   reference:
     - https://community.freepbx.org/t/security-advisory-please-lock-down-your-administrator-access/107203
-  tags: backdoor,sangoma,freepbx
+  tags: backdoor,sangoma,freepbx,vuln
 
 http:
   - method: GET
@@ -47,4 +48,4 @@ http:
         part: header
         kval:
           - last_modified
-# digest: 4a0a004730450220136f30812bce7207a776f5fe3aa1773b1e60d9fbc185d4b08aed91e115ab18b802210096b696e81d07666cdd998dba763506655c76ea36b9ea641cc61eaa0e211adcfd:922c64590222798bb761d5b6d8e72950
+

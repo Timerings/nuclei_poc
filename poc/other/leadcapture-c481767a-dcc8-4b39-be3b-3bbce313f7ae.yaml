@@ -2,7 +2,7 @@ id: leadcapture-c481767a-dcc8-4b39-be3b-3bbce313f7ae
 
 info:
   name: >
-    WP Lead Capturing Pages <= 2.3 - Unauthenticated SQL Injection
+    WP Lead Capturing Pages < 2.6 - Unauthenticated SQL Injection
   author: topscoder
   severity: critical
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 2.3')
+          - compare_versions(version, '< 2.6')

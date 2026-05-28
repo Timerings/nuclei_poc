@@ -1,0 +1,54 @@
+id: unify-hipath-default-login
+info:
+  name: Unify HiPath Cordless IP - Default Login
+  author: FLX
+  severity: high
+  description: |
+    Default login credentials on the Unify HiPath Cordless IP admin center were discovered.
+  impact: |
+    An attacker could gain unauthorized access to the admin center and potentially change the configuration of the devices configured on the service.
+  remediation: |
+    Change the default password to a strong password.
+  reference:
+    - https://wiki.unify.com/images/d/dd/HiPath_Cordless_IP_V1,_Administrator_Documentation.pdf
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
+    cvss-score: 8.3
+    cwe-id: CWE-522
+    cpe: cpe:2.3:a:unify:hipath:*:*:*:*:*:*:*:*,cpe:2.3:a:unify:hipath:*:*:*:*:*:*:*:*:*
+  metadata:
+    max-request: 2
+    product: hipath
+    vendor: unify
+    verified: true
+  tags: default-login,hipath,unify,vuln
+http:
+  - matchers:
+      - part: body
+        type: word
+        words:
+          - /html/wbm_login.html
+    method: GET
+    path:
+      - '{{BaseURL}}'
+  - attack: pitchfork
+    matchers:
+      - status:
+          - 200
+        type: status
+      - condition: or
+        part: body
+        type: word
+        words:
+          - '{"success":true'
+          - There is another user logged in
+    matchers-condition: and
+    payloads:
+      pass:
+        - 1q21q2
+      user:
+        - Unify
+    raw:
+      - |
+        POST /cgi-bin/ikon_button.exe?page=1500&button=51&line=0&eventid=0&WbmSessionId=nosession&Username={{user}}&Password={{pass}}&CountryCode=en&NoSessionTimeout=false&SwitchLanguage=false HTTP/1.1
+        Host: {{Hostname}}

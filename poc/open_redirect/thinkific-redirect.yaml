@@ -3,11 +3,11 @@ id: thinkific-redirect
 info:
   name: Open Redirect vulnerability on thinkific websites
   author: Gal Nagli
-  severity: Medium
+  severity: medium
   tags: redirect
 
 
-requests:
+http:
   - method: GET
 
     path:

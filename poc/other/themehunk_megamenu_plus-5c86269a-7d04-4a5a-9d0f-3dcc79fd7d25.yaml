@@ -2,7 +2,7 @@ id: themehunk_megamenu_plus-5c86269a-7d04-4a5a-9d0f-3dcc79fd7d25
 
 info:
   name: >
-    ThemeHunk <= 1.1.1 - Missing Authorization
+    ThemeHunk <= 1.2.0 - Missing Authorization
   author: topscoder
   severity: high
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 1.1.1')
+          - compare_versions(version, '<= 1.2.0')

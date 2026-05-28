@@ -10,7 +10,7 @@ info:
     verified: true
     max-request: 1
     shodan-query: title:"pCOWeb"
-  tags: pcoweb,unauth,misconfig,exposure
+  tags: pcoweb,unauth,misconfig,exposure,vuln
 
 http:
   - method: GET
@@ -19,6 +19,7 @@ http:
 
     host-redirects: true
     max-redirects: 2
+
     matchers-condition: and
     matchers:
       - type: word
@@ -32,4 +33,4 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a00473045022100c095bcc502a19d17ce4d79aef408487c24123570b4b15685955a7af3e724f007022002bf88569f7ef42e5fae715fe566d19f714a02a7a90d7084eae791006d6964bc:922c64590222798bb761d5b6d8e72950
+

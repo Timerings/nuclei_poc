@@ -1,0 +1,34 @@
+id: smb-version-detect
+
+info:
+  name: SMB Version - Detection
+  author: pussycat0x
+  severity: info
+  description: |
+    SMB version detection involves identifying the specific Server Message Block protocol version used by a system or network. This process is crucial for ensuring compatibility and security, as different SMB versions may have distinct features and vulnerabilities.
+  metadata:
+    max-request: 1
+    shodan-query: "port:445"
+    product: dionaea
+    vendor: dionaea
+  tags: js,network,smb,enum,discovery
+
+javascript:
+  - pre-condition: |
+      isPortOpen(Host,Port);
+    code: |
+      let m = require("nuclei/smb");
+      let c = new m.SMBClient();
+      let response = c.ConnectSMBInfoMode(Host, Port);
+      Export(response);
+
+    args:
+      Host: "{{Host}}"
+      Port: "445"
+
+    extractors:
+      - type: json
+        name: smb-version
+        json:
+          - '.Version.VerString'
+

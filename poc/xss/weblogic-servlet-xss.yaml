@@ -1,7 +1,7 @@
-id: Serverlet XSS  # WebLogic
+id: serverlet-xss
 
 info:
-  author: "pikpikcu"
+  author: "h0tak88r"
   name: "WebLogic Servlet/2.5 JSP/2.1 XSS"
   severity: Medium
 
@@ -9,7 +9,7 @@ info:
     # X-Powered-by: Servlet/2.5 JSP/2.1
     # Test on shodan dork: - port:7001 Weblogic
                          # - port:7001
-requests:
+http:
   - raw:
       - |
         POST /defaultroot/LogonAction.do HTTP/1.1

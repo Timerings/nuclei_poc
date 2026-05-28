@@ -14,7 +14,7 @@ info:
     verified: true
     max-request: 2
     fofa-query: icon_hash="458134656"
-  tags: easycvr,unauth,lfi
+  tags: easycvr,unauth,lfi,vuln
 
 flow: http(1) && http(2)
 
@@ -44,4 +44,4 @@ http:
           - 'contains(content_type, "text/plain")'
           - "status_code == 200"
         condition: and
-# digest: 4a0a00473045022100eb0746ae0914a968184ff511de230f1f1eaca2e48ed01b0c56c3c2a6a742eaa6022011e675ec175e4c4dd86f989fd2b1b91ae4554b7b6d433d57bfd95f12964943fc:922c64590222798bb761d5b6d8e72950
+

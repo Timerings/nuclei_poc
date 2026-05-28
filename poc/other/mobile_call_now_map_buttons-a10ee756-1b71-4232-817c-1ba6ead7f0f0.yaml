@@ -2,7 +2,7 @@ id: mobile_call_now_map_buttons-a10ee756-1b71-4232-817c-1ba6ead7f0f0
 
 info:
   name: >
-    Mobile Call Now & Map Buttons <= 1.5.0 - Authenticated (Administrator+) Stored Cross-Site Scripting
+    Mobile Call Now & Map Buttons < 1.6.2 - Authenticated (Administrator+) Stored Cross-Site Scripting
   author: topscoder
   severity: low
   description: >
@@ -32,16 +32,8 @@ http:
         name: version
         part: body
         group: 1
-        internal: true
         regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
-
-      - type: regex
-        name: version
-        part: body
-        group: 1
-        regex:
-          - "(?mi)Stable tag: ([0-9.]+)"
+          - "(?mi)Stable tag:\\s*([0-9.]+)"
 
     matchers-condition: and
     matchers:
@@ -56,4 +48,4 @@ http:
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 1.5.0')
+          - compare_versions(version, '< 1.6.2')
