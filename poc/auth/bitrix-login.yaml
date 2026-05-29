@@ -1,27 +1,35 @@
+http:
+- host-redirects: true
+  matchers:
+  - condition: and
+    type: word
+    words:
+    - USER_LOGIN
+    - /bitrix/js/main/
+  max-redirects: 2
+  method: GET
+  path:
+  - '{{BaseURL}}/bitrix/admin/'
+  - '{{BaseURL}}/bitrix/components/bitrix/map.yandex.view/settings/settings.php'
+  stop-at-first-match: true
 id: bitrix-login
-
 info:
+  author: juicypotato1,malwarework
+  classification:
+    cpe: cpe:2.3:a:bitrix:bitrix24:*:*:*:*:*:*:*:*
+    cwe-id: CWE-200
+  description: 'Bitrix24 is a unified work space that places a complete set of business
+    tools into a single, intuitive interface.
+
+    '
+  metadata:
+    fofa-query: body="/bitrix/"
+    max-request: 1
+    product: bitrix24
+    runzero-match: service["http.body"] matches "(?i)/bitrix/"
+    shodan-query: http.html:"/bitrix/"
+    vendor: bitrix
+    verified: true
   name: Bitrix Login Panel
-  author: juicypotato1
   severity: info
-  tags: panel,bitrix,login
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}/bitrix/admin/"
-
-    redirects: true
-    max-redirects: 2
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - "USER_LOGIN"
-          - "/bitrix/js/main/"
-        part: body
-        condition: and
-
-      - type: status
-        status:
-          - 200
+  tags: panel,bitrix,login,discovery
