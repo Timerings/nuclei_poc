@@ -1,0 +1,28 @@
+http:
+- matchers:
+  - part: body
+    type: word
+    words:
+    - <title>UrBackup - Keeps your data safe</title>
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
+id: urbackup-panel
+info:
+  author: DhiyaneshDk
+  classification:
+    cpe: cpe:2.3:a:urbackup:urbackup:*:*:*:*:*:*:*:*
+  metadata:
+    max-request: 1
+    product: urbackup
+    runzero-match: service["http.body"] matches "(?i)UrBackup - Keeps your data safe"
+    shodan-query: html:"UrBackup - Keeps your data safe"
+    vendor: urbackup
+    verified: true
+  name: UrBackup Panel - Detect
+  severity: info
+  tags: urbackup,panel,login,detect,discovery

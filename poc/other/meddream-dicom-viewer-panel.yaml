@@ -1,0 +1,33 @@
+http:
+- matchers:
+  - status:
+    - 200
+    type: status
+  - condition: and
+    type: word
+    words:
+    - src="js/md.main.min.
+    - unsupported-browser-msg
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
+id: meddream-dicom-viewer-panel
+info:
+  author: darses
+  description: 'MedDream DICOM Viewer was detected.
+
+    '
+  metadata:
+    fofa-query:
+    - 'Set-Cookie: MEDDREAMSESSID'
+    - icon_hash="-765011263"
+    product: dicom-viewer
+    shodan-query:
+    - 'Set-Cookie: MEDDREAMSESSID'
+    - http.favicon.hash:-765011263
+    vendor: meddream
+    verified: true
+  name: MedDream DICOM Viewer - Panel
+  severity: info
+  tags: detect,meddream,panel
