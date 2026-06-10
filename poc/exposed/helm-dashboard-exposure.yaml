@@ -1,0 +1,27 @@
+http:
+- matchers:
+  - part: body
+    type: word
+    words:
+    - <title>Helm Dashboard</title>
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
+id: helm-dashboard-exposure
+info:
+  author: DhiyaneshDk
+  classification:
+    cpe: cpe:2.3:a:helm:helm:*:*:*:*:*:*:*:*
+  metadata:
+    max-request: 1
+    product: helm
+    shodan-query: http.favicon.hash:-594722214
+    vendor: helm
+    verified: true
+  name: Helm Dashboard - Exposure
+  severity: medium
+  tags: helm,exposure,dashboard,misconfig,vuln

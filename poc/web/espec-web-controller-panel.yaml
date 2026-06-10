@@ -1,0 +1,55 @@
+flow: http(1) && http(2)
+http:
+- matchers:
+  - internal: true
+    status:
+    - 200
+    type: status
+  - internal: true
+    part: body
+    type: word
+    words:
+    - <title>Espec Web Controller</title>
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
+- extractors:
+  - group: 1
+    regex:
+    - 'Version: ([\d\.]+)'
+    type: regex
+  matchers:
+  - status:
+    - 200
+    type: status
+  - part: body
+    type: word
+    words:
+    - Espec Web Controller
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/version'
+id: espec-web-controller-panel
+info:
+  author: darses
+  description: 'Espec Web Controller login panel was detected.
+
+    '
+  metadata:
+    fofa-query:
+    - title="Espec Web Controller"
+    - icon_hash="1190353375"
+    max-request: 2
+    product: web_controller
+    shodan-query:
+    - title:"Espec Web Controller"
+    - http.favicon.hash:529766441
+    vendor: espec
+    verified: true
+  name: Espec Web Controller - Panel
+  reference:
+  - https://espec.com/na/products/option_detail/web_controller/
+  severity: info
+  tags: panel,espec,ics
