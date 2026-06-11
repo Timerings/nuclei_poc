@@ -1,27 +1,24 @@
+http:
+- matchers:
+  - part: body
+    regex:
+    - content="(.*)AeroCMS(.*)
+    type: regex
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: aerocms-detect
-
 info:
-  name: AeroCMS Detect
   author: pikpikcu
-  severity: info
   metadata:
-    verified: true
-    fofa-query: "AeroCMS"
+    fofa-query: AeroCMS
+    max-request: 1
     shodan-query: title:"AeroCMS"
+    verified: true
+  name: AeroCMS Detect
+  severity: info
   tags: tech,aerocms
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-      - type: regex
-        part: body
-        regex:
-          - 'content="(.*)AeroCMS(.*)'
-
-      - type: status
-        status:
-          - 200

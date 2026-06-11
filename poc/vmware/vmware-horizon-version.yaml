@@ -1,20 +1,18 @@
+http:
+- extractors:
+  - regex:
+    - '"clientVersion":"[^"]*"'
+    type: regex
+  method: GET
+  path:
+  - '{{BaseURL}}/portal/info.jsp'
 id: vmware-horizon-version
-
 info:
-  name: Vmware Horizon Version Detect
   author: veshraj
-  severity: info
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: title:"Vmware Horizon"
+    verified: true
+  name: Vmware Horizon Version Detect
+  severity: info
   tags: vmware,tech
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}/portal/info.jsp"
-
-    extractors:
-      - type: regex
-        regex:
-          - '"clientVersion":"[^"]*"'

@@ -7,7 +7,7 @@ info:
   reference: https://www.exploit-db.com/exploits/49252
   tags: wordpress,wp-plugin
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/wp-content/plugins/boldgrid-backup/cron/restore-info.json"

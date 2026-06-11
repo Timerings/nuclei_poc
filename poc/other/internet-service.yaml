@@ -4,11 +4,10 @@ info:
   name: Internet Services
   author: dhiyaneshDK
   severity: low
-  reference:
-    - https://www.exploit-db.com/ghdb/5948
-  tags: iot,edb
+  reference: https://www.exploit-db.com/ghdb/5948
+  tags: iot
 
-http:
+requests:
   - method: GET
     path:
       - '{{BaseURL}}/default.htm'

@@ -1,27 +1,25 @@
+http:
+- matchers:
+  - dsl:
+    - Host != ip
+    type: dsl
+  - condition: and
+    type: word
+    words:
+    - Account not found.
+    - ouch!
+    - SurveySparrow
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: surveysparrow-takeover
-
 info:
-  name: SurveySparrow takeover detection
   author: philippedelteil
-  severity: high
+  metadata:
+    max-request: 1
+  name: SurveySparrow takeover detection
   reference:
-    - https://github.com/EdOverflow/can-i-take-over-xyz/issues/281
+  - https://github.com/EdOverflow/can-i-take-over-xyz/issues/281
+  severity: high
   tags: takeover,surveysparrow
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-      - type: dsl
-        dsl:
-          - Host != ip
-
-      - type: word
-        words:
-          - "Account not found."
-          - "ouch!"
-          - "SurveySparrow"
-        condition: and

@@ -5,9 +5,9 @@ info:
   author: aashiq
   severity: info
   description: Searches for sensitive directories present in the wordpress-popup plugin.
-  tags: wordpress,listing,plugin
+  tags: wordpress,listing
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/wp-content/plugins/wordpress-popup/views/admin/"

@@ -1,4 +1,4 @@
-id: spark-webui-unauth
+id: spark-webui-unauth.yaml
 info:
   name: Unauthenticated Spark WebUI
   author: princechaddha
@@ -6,11 +6,10 @@ info:
   reference: https://github.com/vulhub/vulhub/tree/master/spark/unacc
   tags: spark,unauth
 
-http:
+requests:
   - method: GET
     path:
-      - "{{BaseURL}}"
-
+      - "{{BaseURL}}/"
     matchers-condition: and
     matchers:
       - type: status

@@ -6,7 +6,7 @@ info:
   severity: high
   tags: apache,airflow,unauth
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/admin/"

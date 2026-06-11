@@ -5,9 +5,9 @@ info:
   author: dhiyaneshDK
   severity: high
   reference: https://www.exploit-db.com/ghdb/5808
-  tags: config,unauth,prtg
+  tags: config,unauth
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/sensorlist.htm"

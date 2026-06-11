@@ -6,7 +6,7 @@ info:
   severity: high
   tags: tensorflow,tensorboard,unauth
 
-http:
+requests:
   - method: GET
     path:
       - '{{BaseURL}}/data/plugins_listing'

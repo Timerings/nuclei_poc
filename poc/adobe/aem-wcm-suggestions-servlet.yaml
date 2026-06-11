@@ -7,7 +7,7 @@ info:
   tags: aem
 
 
-http:
+requests:
   - method: GET
     path:
       - '{{BaseURL}}/bin/wcm/contentfinder/connector/suggestions.json;%0aOJh.css?query_term=path%3a/&pre={{randstr}}'

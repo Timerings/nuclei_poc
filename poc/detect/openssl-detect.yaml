@@ -1,33 +1,28 @@
+http:
+- extractors:
+  - part: header
+    regex:
+    - OpenSSL\/([0-9.a-z]+)
+    type: regex
+  matchers:
+  - part: server
+    type: word
+    words:
+    - OpenSSL
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: openssl-detect
-
 info:
-  name: Openssl Detect
   author: h4kux,princechaddha
-  severity: info
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: OpenSSL
+    verified: true
+  name: Openssl Detect
+  severity: info
   tags: tech,openssl
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-
-      - type: word
-        part: server
-        words:
-          - "OpenSSL"
-
-      - type: status
-        status:
-          - 200
-
-    extractors:
-      - type: regex
-        part: header
-        regex:
-          - 'OpenSSL\/([0-9.a-z]+)'

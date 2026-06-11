@@ -8,7 +8,7 @@ info:
     shodan-query: http.title:"Create a pipeline - Go",html:"GoCD Version"
   tags: go,gocd,unauth,misconfig
 
-http:
+requests:
   - method: GET
     path:
       - '{{BaseURL}}/go/admin/pipelines/create?group=defaultGroup'

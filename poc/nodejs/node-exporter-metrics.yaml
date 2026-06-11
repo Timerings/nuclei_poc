@@ -7,7 +7,7 @@ info:
   description: Information Disclosure of Garbage Collection
   tags: node,exposure,debug
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/metrics"

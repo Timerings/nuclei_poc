@@ -1,26 +1,23 @@
+http:
+- matchers:
+  - part: body
+    type: word
+    words:
+    - AmpGuard wifi setup
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: ampguard-wifi-setup
-
 info:
-  name: AmpGuard Wifi Setup
   author: pussycat0x
-  severity: info
   metadata:
-    verified: "true"
+    max-request: 1
     shodan-query: title:"AmpGuard wifi setup"
+    verified: true
+  name: AmpGuard Wifi Setup
+  severity: info
   tags: ampguard,iot,setup,wifi
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "AmpGuard wifi setup"
-
-      - type: status
-        status:
-          - 200

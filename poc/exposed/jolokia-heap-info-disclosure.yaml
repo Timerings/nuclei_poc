@@ -6,7 +6,7 @@ info:
   severity: info
   tags: jolokia,disclosure,java
 
-http:
+requests:
   - raw:
       - |
         POST /jolokia/ HTTP/1.1

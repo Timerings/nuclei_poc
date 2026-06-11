@@ -1,12 +1,11 @@
 id: gitlab-public-signup
-
 info:
   name: GitLab public signup
   author: pdteam
   severity: info
-  tags: gitlab,misconfig
+  tags: gitlab
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/users/sign_in"
@@ -27,6 +26,6 @@ http:
           - 200
 
       - type: word
-        negative: true
         words:
           - '<meta content="GitLab.com" property="og:description">'
+        negative: true

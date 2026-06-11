@@ -5,9 +5,9 @@ info:
   author: princechaddha
   severity: high
   reference: https://smaranchand.com.np/2020/04/misconfigured-wordpress-takeover-to-remote-code-execution/
-  tags: wordpress,setup
+  tags: wordpress
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/wp-admin/setup-config.php?step=1"

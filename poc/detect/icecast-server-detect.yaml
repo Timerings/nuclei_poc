@@ -1,26 +1,23 @@
+http:
+- matchers:
+  - part: header
+    type: word
+    words:
+    - Icecast
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: icecast-server-detect
-
 info:
-  name: Icecast Streaming Media Server Detection
   author: theamanrawat
-  severity: info
   metadata:
-    verified: true
+    max-request: 1
     shodan-query: http.title:"Icecast Streaming Media Server"
+    verified: true
+  name: Icecast Streaming Media Server Detection
+  severity: info
   tags: tech,icecast
-
-requests:
-  - method: GET
-    path:
-      - '{{BaseURL}}'
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: header
-        words:
-          - "Icecast"
-
-      - type: status
-        status:
-          - 200

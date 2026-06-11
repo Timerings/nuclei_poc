@@ -5,9 +5,9 @@ info:
   author: dhiyaneshDK
   severity: low
   reference: https://www.exploit-db.com/ghdb/6782
-  tags: logs,config
+  tags: logs
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/tcpconfig.html"

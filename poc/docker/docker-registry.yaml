@@ -6,7 +6,7 @@ info:
   severity: medium
   tags: docker,devops
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/v2/_catalog"

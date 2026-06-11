@@ -1,21 +1,19 @@
+http:
+- matchers:
+  - part: header
+    type: word
+    words:
+    - 'X-Mod-Pagespeed:'
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: pagespeed-detect
-
 info:
-  name: Pagespeed Detection
   author: geeknik
-  severity: info
   metadata:
-    verified: "true"
-    shodan-query: "X-Mod-Pagespeed:"
+    max-request: 1
+    shodan-query: 'X-Mod-Pagespeed:'
+    verified: true
+  name: Pagespeed Detection
+  severity: info
   tags: tech,pagespeed
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers:
-      - type: word
-        part: header
-        words:
-          - "X-Mod-Pagespeed:"
