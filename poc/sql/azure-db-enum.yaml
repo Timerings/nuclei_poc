@@ -1,0 +1,26 @@
+dns:
+- attack: batteringram
+  class: inet
+  matchers:
+  - part: answer
+    type: word
+    words:
+    - "IN\tA"
+  name: '{{wordlist}}.{{BaseDNS}}'
+  recursion: true
+  type: A
+id: azure-db-enum
+info:
+  author: initstring
+  description: 'Searches for Azure databases via their registered DNS names
+
+    '
+  metadata:
+    max-request: 1
+    verified: true
+  name: Azure Databases - Cloud Enumeration
+  severity: info
+  tags: cloud,enum,cloud-enum,azure
+self-contained: true
+variables:
+  BaseDNS: database.windows.net
