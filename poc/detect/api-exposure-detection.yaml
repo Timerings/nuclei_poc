@@ -9,7 +9,7 @@ info:
     These endpoints can reveal sensitive information about the underlying APIs or server implementation.
   tags: api, graphql, swagger, openapi, detection
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/graphql"
