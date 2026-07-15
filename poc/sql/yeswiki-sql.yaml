@@ -11,7 +11,7 @@ info:
   metadata:
     verified: true
     shodan-query: http.html:"yeswiki"
-  tags: yeswiki,sqli,huntr
+  tags: yeswiki,sqli
 
 variables:
   num: "999999999"
