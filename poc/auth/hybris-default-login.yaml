@@ -11,13 +11,11 @@ info:
     verified: true
     shodan-query: title:"Hybris"
   tags: default-login,hybris
-
 requests:
   - raw:
       - |
         GET /login HTTP/1.1
         Host: {{Hostname}}
-
       - |
         POST /j_spring_security_check HTTP/1.1
         Host: {{Hostname}}
@@ -26,18 +24,15 @@ requests:
         Referer: {{BaseURL}}login
 
         j_username={{username}}&j_password={{password}}&_csrf={{csrftoken}}
-
       - |
         GET / HTTP/1.1
         Host: {{Hostname}}
-
     attack: pitchfork
     payloads:
       username:
         - admin
       password:
         - nimda
-
     cookie-reuse: true
     matchers-condition: and
     matchers:
@@ -46,11 +41,9 @@ requests:
           - "hybris administration console"
           - "You're Administrator"
         condition: and
-
       - type: status
         status:
           - 200
-
     extractors:
       - type: regex
         name: csrftoken
