@@ -1,18 +1,31 @@
-id: api-instagramgraph
-
+http:
+- host-redirects: true
+  matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - '{"username":"{{user}}"}'
+    - Instagram photos and videos from
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  max-redirects: 2
+  method: GET
+  path:
+  - https://www.instagram.com/{{user}}
+id: instagram
 info:
-  name: Instagram Graph API Test
-  author: zzeitlin
-  reference: https://developers.facebook.com/docs/instagram-api/getting-started
+  author: dwisiswant0
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
+    cwe-id: CWE-200
+  description: Instagram user name information check was conducted.
+  metadata:
+    max-request: 1
+  name: Instagram User Name Information - Detect
   severity: info
-  tags: token-spray,instagram,graph
-
-requests:
-  - method: GET
-    path:
-      - "https://graph.facebook.com/v8.0/me/accounts?access_token={{token}}"
-
-    matchers:
-      - type: status
-        status:
-          - 200
+  tags: osint,osint-social,instagram
+self-contained: true

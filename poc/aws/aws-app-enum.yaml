@@ -1,0 +1,32 @@
+http:
+- attack: batteringram
+  matchers:
+  - condition: or
+    name: Registered AWS App
+    status:
+    - 200
+    - 302
+    type: status
+  raw:
+  - 'GET https://{{wordlist}}.{{BaseDNS}} HTTP/1.1
+
+    Host: {{wordlist}}.{{BaseDNS}}
+
+    '
+  redirects: false
+  threads: 10
+id: aws-app-enum
+info:
+  author: initstring
+  description: 'Searches for AWS apps (WorkDocs, WorkMail, Connect, etc.)
+
+    '
+  metadata:
+    max-request: 1
+    verified: true
+  name: AWS Apps - Cloud Enumeration
+  severity: info
+  tags: cloud,enum,cloud-enum,aws
+self-contained: true
+variables:
+  BaseDNS: awsapps.com
