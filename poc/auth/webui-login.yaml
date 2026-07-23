@@ -9,7 +9,7 @@ info:
     - web
     - login
  
-http:
+requests:
   - name: Web UI Login Page
     path:
       - "{{BaseURL}}/webui/"

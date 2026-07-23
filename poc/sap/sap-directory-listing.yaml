@@ -1,33 +1,24 @@
 id: sap-directory-listing
-
 info:
   name: SAP Directory Listing
-  author: dhiyaneshDK
-  severity: medium
-  description: SAP Directory Listing is enabled.
-  metadata:
-    max-request: 1
-  tags: sap,listing,misconfig
+  risk: Medium
 
-http:
+params:
+  - root: "{{.BaseURL}}"
+
+variables:
+  - prefix: |
+      /
+      /sap/
+  - path: |
+      irj/go/km/navigation/
+requests:
   - method: GET
-    path:
-      - '{{BaseURL}}/irj/go/km/navigation/'
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - 'title="~system"'
-          - 'NetWeaver'
-        condition: and
-
-      - type: status
-        status:
-          - 200
-
-      - type: word
-        words:
-          - "text/html"
-        part: header
-# digest: 4a0a00473045022100afb3bea78ce6ab9a967598bd09cdc3ca2f6d9feea5c99097bb9fe5e0373537d9022066bf670edfdcf82a38d4c60c2addce3762d219dcf8b119c8b3b32175ff6ff101:922c64590222798bb761d5b6d8e72950
+    redirect: false
+    url: >-
+      {{.root}}{{.prefix}}{{.path}}
+    headers:
+      - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+    detections:
+      - >-
+        StatusCode() == 200 && StringSearch("response", "~system") && StringSearch("response", "Changed") && StringSearch("response", ".webdav.")
