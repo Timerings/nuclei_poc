@@ -11,7 +11,7 @@ info:
   - sensitive-info
   - profiling-endpoint
   - symfony
-requests:
+http:
 - matchers:
   - status:
     - 200
