@@ -1,31 +1,27 @@
+http:
+- matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - MetaView Explorer
+    - (InstallAnywhere Web Installer)
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: metaview-explorer-installer
-
 info:
-  name: MetaView Explorer Installer
   author: theamanrawat
-  severity: info
+  description: MetaView Explorer is susceptible to the Installation page exposure
+    due to misconfiguration.
   metadata:
-    verified: true
     max-request: 1
     shodan-query: http.title:"MetaView Explorer"
+    verified: true
+  name: MetaView Explorer Installer
+  severity: info
   tags: misconfig,metaview,installer
-
-http:
-  - method: GET
-    path:
-      - '{{BaseURL}}'
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - 'MetaView Explorer'
-          - '(InstallAnywhere Web Installer)'
-        condition: and
-
-      - type: status
-        status:
-          - 200
-
-# digest: 4a0a00473045022100e7bf2fa7a926bea62217a2ec8cffde51afafb52ff14516980b24c94e4c2af3cc02205702d50eeff93a016b99a7838ac72adeb997b71029210d6fd7e1c4abe0d047cb:922c64590222798bb761d5b6d8e72950

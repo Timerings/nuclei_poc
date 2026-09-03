@@ -1,34 +1,28 @@
+http:
+- host-redirects: true
+  matchers:
+  - part: body
+    type: word
+    words:
+    - <title>Flask + Redis Queue + Docker</title>
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  max-redirects: 2
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: flask-redis-docker
-
 info:
-  name: Flask Redis Queue Docker - Exposure
   author: DhiyaneshDk
-  severity: low
-  reference:
-    - https://www.facebook.com/photo/?fbid=623621413141715&set=a.467014098802448
+  description: Flask Redis Queue Docker is exposed.
   metadata:
-    verified: true
     max-request: 1
     shodan-query: title:"Flask + Redis Queue + Docker"
+    verified: true
+  name: Flask Redis Queue Docker - Exposure
+  reference:
+  - https://www.facebook.com/photo/?fbid=623621413141715&set=a.467014098802448
+  severity: low
   tags: misconfig,exposure,flask,redis,docker
-
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    host-redirects: true
-    max-redirects: 2
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - '<title>Flask + Redis Queue + Docker</title>'
-
-      - type: status
-        status:
-          - 200
-
-# digest: 4a0a00473045022100ab80b8701877b0063d198fa257f6e6513ea582bc225f0216cf65370a80daa54f02201259df54d14dac2a6e18bf0bae88524a4ab71fa5f4c20f51f4806f34dc4a1567:922c64590222798bb761d5b6d8e72950

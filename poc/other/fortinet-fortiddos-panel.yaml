@@ -1,36 +1,34 @@
-id: fortinet-fortiddos-panel
-
-info:
-  name: Fortinet FortiDDoS Panel
-  author: johnk3r
-  severity: info
-  description: |
-    Fortinet FortiDDoS panel was detected.
-  reference:
-    - https://www.fortinet.com/products/ddos/fortiddos
-  metadata:
-    verified: true
-    max-request: 1
-    shodan-query: http.title:"FortiDDoS"
-  tags: panel,fortinet,fortiddos,login
-
 http:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
+- host-redirects: true
+  matchers:
+  - part: body
+    type: word
+    words:
+    - <title>FortiDDoS</title>
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  max-redirects: 1
+  method: GET
+  path:
+  - '{{BaseURL}}'
+id: fortinet-fortiddos-panel
+info:
+  author: johnk3r
+  classification:
+    cpe: cpe:2.3:a:fortinet:fortiddos:*:*:*:*:*:*:*:*
+  description: 'Fortinet FortiDDoS panel was detected.
 
-    host-redirects: true
-    max-redirects: 1
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "<title>FortiDDoS</title>"
-
-      - type: status
-        status:
-          - 200
-
-# digest: 490a004630440220039af53bd3ddd7fb523d62cdeef575ee621b360160c6a95a707eb362d8e7def702205956b29c8a6e924fa32165a08d17b38b5f8feb5a9792cd723fdd4f3c6ddf3351:922c64590222798bb761d5b6d8e72950
+    '
+  metadata:
+    max-request: 1
+    product: fortiddos
+    shodan-query: http.title:"FortiDDoS"
+    vendor: fortinet
+    verified: true
+  name: Fortinet FortiDDoS Panel
+  reference:
+  - https://www.fortinet.com/products/ddos/fortiddos
+  severity: info
+  tags: panel,fortinet,fortiddos,login

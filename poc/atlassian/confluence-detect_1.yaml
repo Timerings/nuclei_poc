@@ -1,42 +1,51 @@
-id: confluence-detect 1
+id: confluence-detect
+
 info:
-  author: philippedelteil
-  description: Allows you to detect Atlassian Confluence instances
   name: Confluence Detect
+  author: philippedelteil,AdamCrosser
   severity: info
-  tags: tech,confluence
-requests:
-- attack: sniper
-  extractors:
-  - group: 1
-    part: body
-    regex:
-    - Atlassian Confluence ([a-z0-9-._]+)
-    type: regex
-  matchers:
-  - condition: or
-    part: header
-    type: word
-    words:
-    - -Confluence-
-    - -confluence-
-  - part: body
-    type: word
-    words:
-    - confluence-base-url
-  matchers-condition: and
-  payloads:
-    Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
-  raw:
-  - 'GET / HTTP/1.1
+  description: Allows you to detect Atlassian Confluence instances
+  metadata:
+    category: productivity
+    max-request: 5
+    product: confluence_server
+    shodan-query: http.component:"Atlassian Confluence"
+    vendor: atlassian
+  tags: tech,confluence,atlassian,detect
 
-    Host: {{Subdomains}}
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/dologin.action"
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/pages"
+      - "{{BaseURL}}/confluence"
+      - "{{BaseURL}}/wiki"
 
-    User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
+    host-redirects: true
+    stop-at-first-match: true
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: header
+        words:
+          - '-confluence-'
+        case-insensitive: true
 
-    Accept-Encoding: gzip, deflate
+      - type: word
+        part: body
+        words:
+          - 'confluence-base-url'
 
-    Accept: */*
+    extractors:
+      - type: regex
+        name: version
+        part: body
+        group: 1
+        regex:
+          - '<meta name="ajs-version-number" content="(.*)">'
+          - 'Atlassian Confluence ([a-z0-9-._]+)'
 
-    '
-  threads: 100
+      - type: kval
+        kval:
+          - version

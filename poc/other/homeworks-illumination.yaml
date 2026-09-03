@@ -1,32 +1,27 @@
+http:
+- matchers:
+  - condition: and
+    type: word
+    words:
+    - HomeWorks Illumination Web Keypad
+    - Lutron HomeWorks
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: homeworks-illumination
-
 info:
-  name: HomeWorks Illumination Web Keypad
   author: geeknik
-  severity: low
-  reference:
-    - https://www.lutron.com
+  description: HomeWorks Illumination Web Keypad panel was detected.
   metadata:
-    verified: true
     max-request: 1
     shodan-query: html:"HomeWorks Illumination Web Keypad"
+    verified: true
+  name: HomeWorks Illumination Web Keypad
+  reference:
+  - https://www.lutron.com
+  severity: low
   tags: misconfig,iot,homeworks
-
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - "HomeWorks Illumination Web Keypad"
-          - "Lutron HomeWorks"
-        condition: and
-
-      - type: status
-        status:
-          - 200
-
-# digest: 4a0a0047304502201d99f8763b6e653c7da3b85f266ad5c380a9c84f4d332a24e13bb0142340b371022100a6f0d18af86e985cffc180f08414b82942754996097d4fc58f0ad39cc23ba6bc:922c64590222798bb761d5b6d8e72950

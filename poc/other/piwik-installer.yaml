@@ -1,36 +1,30 @@
+http:
+- matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - Piwik
+    - Installation status
+  - part: header
+    type: word
+    words:
+    - text/html
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: piwik-installer
-
 info:
-  name: Piwik Installer Exposure
   author: DhiyaneshDk
-  severity: low
+  description: Piwik is susceptible to the Installation page exposure due to misconfiguration.
   metadata:
-    verified: true
     max-request: 1
     shodan-query: title:"Piwik &rsaquo; Installation"
+    verified: true
+  name: Piwik Installer Exposure
+  severity: low
   tags: misconfig,piwik,install
-
-http:
-  - method: GET
-    path:
-      - '{{BaseURL}}'
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "Piwik"
-          - "Installation status"
-        condition: and
-
-      - type: word
-        part: header
-        words:
-          - "text/html"
-
-      - type: status
-        status:
-          - 200
-
-# digest: 490a004630440220757648b8ac9df7383e9f0f6ec3307296ea5dc2f9e4211d4855e6146f0868c379022051686764550d86b46b9a3ad761a2acd150be7efaefe245581ffde0f908704507:922c64590222798bb761d5b6d8e72950

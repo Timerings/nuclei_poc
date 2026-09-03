@@ -1,14 +1,19 @@
-name: prometheus
-priority: 1
-nuclei_tags:
-  - - prometheus
-fingerprint:
-  - path: /
-    request_method: get
-    request_headers: {}
-    request_data: ''
-    status_code: 200
-    headers: {}
-    keyword:
-      - <title>Prometheus
-    favicon_hash: []
+id: prometheus
+info:
+  name: prometheus
+  author: cn-kali-team
+  tags: detect,tech,prometheus
+  severity: info
+  metadata:
+    product: prometheus
+    vendor: prometheus
+    verified: true
+http:
+- method: GET
+  path:
+  - '{{BaseURL}}/'
+  matchers:
+  - type: word
+    words:
+    - <title>prometheus
+    case-insensitive: true

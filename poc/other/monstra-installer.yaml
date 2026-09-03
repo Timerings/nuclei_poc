@@ -1,29 +1,24 @@
+http:
+- matchers:
+  - part: body
+    type: word
+    words:
+    - 'Monstra :: Install'
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: monstra-installer
-
 info:
-  name: Monstra Installation Exposure
   author: ritikchaddha
-  severity: high
+  description: Monstra is susceptible to the Installation page exposure due to misconfiguration.
   metadata:
-    verified: true
     max-request: 1
     shodan-query: 'title:"Monstra :: Install"'
+    verified: true
+  name: Monstra Installation Exposure
+  severity: high
   tags: misconfig,monstra,install
-
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - "Monstra :: Install"
-
-      - type: status
-        status:
-          - 200
-
-# digest: 4a0a004730450220406d24b8bac8b64184f1ef90edcdddea38c8482b48a589e05fdf006441fce658022100b0564667e678d2b7d905f3861adcb7bf2c07e59ea44d2805e176ec321e060888:922c64590222798bb761d5b6d8e72950
