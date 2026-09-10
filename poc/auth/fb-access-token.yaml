@@ -1,0 +1,19 @@
+file:
+- extensions:
+  - all
+  extractors:
+  - part: body
+    regex:
+    - \b(EAACEdEose0cBA[a-zA-Z0-9]+)\b
+    type: regex
+id: fb-access-token
+info:
+  author: DhiyaneshDK
+  metadata:
+    verified: true
+  name: Facebook Access Token
+  reference:
+  - https://github.com/praetorian-inc/noseyparker/blob/main/data/default/rules/facebook.yml
+  - https://developers.facebook.com/docs/facebook-login/access-tokens/
+  severity: info
+  tags: file,keys,facebook,token
