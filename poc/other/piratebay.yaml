@@ -1,0 +1,26 @@
+headless:
+- matchers:
+  - condition: and
+    dsl:
+    - '!contains(data, ''No results returned'')'
+    - 'contains(data, ''User: {{user}}</label>'')'
+    type: dsl
+  steps:
+  - action: navigate
+    args:
+      url: https://thepiratebay.org/search.php?q=user:{{user}}
+  - action: waitload
+id: piratebay
+info:
+  author: philippedelteil
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
+    cwe-id: CWE-200
+  metadata:
+    max-request: 1
+    verified: true
+  name: Piratebay Username Information - Detect
+  severity: info
+  tags: osint,osint-p2p,piratebay
+self-contained: true

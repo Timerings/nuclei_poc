@@ -1,0 +1,19 @@
+file:
+- extensions:
+  - all
+  extractors:
+  - part: body
+    regex:
+    - EZAK(?i)[a-z0-9]{54}
+    type: regex
+id: easypost-api-token
+info:
+  author: DhiyaneshDK
+  metadata:
+    verified: true
+  name: Easypost Test API Token
+  reference:
+  - https://github.com/returntocorp/semgrep-rules/blob/develop/generic/secrets/gitleaks/easypost-api-token.go
+  - https://github.com/returntocorp/semgrep-rules/blob/develop/generic/secrets/gitleaks/easypost-api-token.yaml
+  severity: info
+  tags: file,keys,easypost,token
