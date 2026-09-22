@@ -1,24 +1,21 @@
-version: '3.7'
+id: docker-compose-yml
 
-services:
-  app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - 8000:8000
-    env_file:
-      - .env
-    depends_on:
-      - db
-  db:
-    image: postgres:13.4-buster
-    volumes:
-      - /var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=changeme
-      - POSTGRES_PASSWORD=changeme
-      - POSTGRES_DB=changeme
+info:
+  name: Docker Compose Check
+  author: SirBugs
+  severity: Critical
+  description: Checks for common Docker Compose configuration keys.
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/docker-compose.yml"
+
+    matchers:
+      - type: word
+        words:
+          - "local composer cache"
+          - "MYSQL_DATABASE"
+          - "MYSQL_ROOT_PASSWORD"
+          - "# Mount source-code"
+        part: body

@@ -1,29 +1,33 @@
-http:
-- extractors:
-  - part: body
-    regex:
-    - \"([^"\r\n]+\.dll)\"
-    type: regex
-  matchers:
-  - condition: and
-    type: word
-    words:
-    - Blazor
-    - '"config":'
-  method: GET
-  path:
-  - '{{BaseURL}}/_framework/blazor.boot.json'
 id: blazor-boot
+
 info:
-  author: freakyclown
-  description: Exposed Blazor Boot (a web framework developed by Microsoft) config
-    file.
-  metadata:
-    github-query: blazor.boot.json language:JSON
-    max-request: 1
-    verified: true
   name: Blazor Boot File Disclosure
-  reference:
-  - https://github.com/freakyclown/Nuclei_templates/blob/main/blazor_server.yaml
+  author: freakyclown
   severity: info
+  reference:
+    - https://github.com/freakyclown/Nuclei_templates/blob/main/blazor_server.yaml
+  metadata:
+    verified: true
+    max-request: 1
+    github-query: 'blazor.boot.json language:JSON'
   tags: blazor,boot,exposure,config,disclosure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/_framework/blazor.boot.json"
+
+    matchers:
+      - type: word
+        words:
+          - 'Blazor'
+          - '"config":'
+        condition: and
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - \"([^"\r\n]+\.dll)\"
+
+# digest: 4b0a00483046022100dc61a96aca50c31f4dadd2e148a6245daada0e5b4f7720964e8393a4ed6ff4a3022100fe89b94e9bb50ef7c4d0c952ab9c38e60c45b17d93552e7d181d4901bdd05a03:922c64590222798bb761d5b6d8e72950

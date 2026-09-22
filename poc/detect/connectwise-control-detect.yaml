@@ -1,23 +1,26 @@
-http:
-- matchers:
-  - part: body
-    type: word
-    words:
-    - ConnectWise Control Remote Support Software
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  method: GET
-  path:
-  - '{{BaseURL}}'
 id: connectwise-control-detect
+
 info:
-  author: pikpikcu
-  metadata:
-    max-request: 1
-    shodan-query: title="ConnectWise Control Remote Support Software"
-    verified: true
   name: ConnectWise Control  Detect
+  author: pikpikcu
   severity: info
+  metadata:
+    verified: true
+    shodan-query: title="ConnectWise Control Remote Support Software"
   tags: tech,connectwise
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "ConnectWise Control Remote Support Software"
+
+      - type: status
+        status:
+          - 200

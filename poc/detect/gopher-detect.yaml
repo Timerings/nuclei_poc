@@ -1,24 +1,21 @@
 id: gopher-detect
-info:
-  author: pry0cc
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  description: 'Gopher service was detected.
 
-    '
-  metadata:
-    max-request: 1
-  name: Gopher Service - Detect
+info:
+  name: Gopher Service Detection
+  author: pry0cc
   severity: info
-  tags: network,gopher,detect
-tcp:
-- host:
-  - '{{Hostname}}'
-  inputs:
-  - data: "\r\n"
-  matchers:
-  - dsl:
-    - contains(to_lower(raw), 'gopher')
-    type: dsl
-  port: 70
+  tags: network,gopher
+  description: |
+    Gopher is an application-layer protocol that provides the ability to extract and view Web documents stored on remote Web servers.
+
+network:
+  - inputs:
+      - data: "\r\n"
+    host:
+      - "{{Hostname}}"
+      - "{{Host}}:70"
+
+    matchers:
+      - type: dsl
+        dsl:
+          - "contains(to_lower(raw), 'gopher')"

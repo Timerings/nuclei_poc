@@ -1,31 +1,28 @@
 id: imap-detect
+
 info:
+  name: Imap Detection
   author: pussycat0x
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  description: 'IMAP was detected.
-
-    '
-  metadata:
-    max-request: 1
-    shodan-query: imap
-    verified: true
-  name: IMAP - Detect
   severity: info
+  description: |
+    IMAP is an application-layer protocol used by email clients to retrieve messages from a mail server. It was designed to manage multiple email clients, therefore clients generally leave messages on the server until the user explicitly deletes them.
+  metadata:
+    verified: true
+    shodan-query: 'imap'
   tags: network,detect,imap,mail
-tcp:
-- host:
-  - '{{Hostname}}'
-  inputs:
-  - data: '
 
-      '
-  matchers:
-  - condition: and
-    type: word
-    words:
-    - 'OK '
-    - IMAP4rev1
-  matchers-condition: and
-  port: 143
+network:
+  - inputs:
+      - data: "\n"
+
+    host:
+      - "{{Hostname}}"
+      - "{{Host}}:143"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "OK "
+          - "IMAP4rev1"
+        condition: and

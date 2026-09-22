@@ -1,34 +1,38 @@
-http:
-- extractors:
-  - group: 1
-    regex:
-    - (?i)<title>([A-Za-z 0-9.]+)</title>
-    type: regex
-  matchers:
-  - type: word
-    words:
-    - Plesk Obsidian
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  method: GET
-  path:
-  - '{{BaseURL}}/login_up.php'
 id: plesk-obsidian-login
+
 info:
-  author: dhiyaneshDK,daffainfo
-  classification:
-    cpe: cpe:2.3:a:plesk:obsidian:*:*:*:*:*:*:*:*
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  description: Plesk Obsidian login panel was detected.
-  metadata:
-    max-request: 1
-    product: obsidian
-    shodan-query: http.html:"Plesk Obsidian"
-    vendor: plesk
-    verified: true
   name: Plesk Obsidian Login Panel - Detect
+  author: dhiyaneshDK,daffainfo
   severity: info
+  description: Plesk Obsidian login panel was detected.
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0.0
+    cwe-id: CWE-200
+  metadata:
+    verified: true
+    shodan-query: http.html:"Plesk Obsidian"
   tags: panel,plesk,login,edb
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/login_up.php'
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - 'Plesk Obsidian'
+
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        group: 1
+        regex:
+          - '(?i)<title>([A-Za-z 0-9.]+)</title>'
+
+# Enhanced by md on 2022/12/06
