@@ -1,30 +1,27 @@
+http:
+- host-redirects: true
+  matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - _dash-config
+    - DashRenderer
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  max-redirects: 2
+  method: GET
+  path:
+  - '{{BaseURL}}'
 id: dash-panel-detect
-
 info:
-  name: Dash Panel Detect
   author: tess
-  severity: info
   metadata:
-    verified: "true"
+    max-request: 1
     shodan-query: html:"DashRenderer"
+    verified: true
+  name: Dash Panel Detect
+  severity: info
   tags: tech,dash
-
-requests:
-  - method: GET
-    path:
-      - '{{BaseURL}}'
-
-    host-redirects: true
-    max-redirects: 2
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: body
-        words:
-          - '_dash-config'
-          - 'DashRenderer'
-        condition: and
-
-      - type: status
-        status:
-          - 200

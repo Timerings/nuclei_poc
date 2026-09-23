@@ -1,29 +1,37 @@
+http:
+- extractors:
+  - group: 1
+    part: header
+    regex:
+    - (BIGipServer[a-z\_\.\-\~0-9A-Z]*)=([!a-z0-9A-Z/.=]+)
+    type: regex
+  host-redirects: true
+  matchers:
+  - part: header
+    type: word
+    words:
+    - BIGipServer~
+  - part: header
+    type: word
+    words:
+    - BigIP
+  - part: body
+    type: word
+    words:
+    - F5 Networks.
+  method: GET
+  path:
+  - '{{BaseURL}}'
+  - '{{BaseURL}}/my.policy'
+  stop-at-first-match: true
 id: bigip-detect
-
 info:
-  name: BIGIP Cookie Detection
-  author: PR3R00T
-  severity: info
+  author: PR3R00T,0x240x23elu
+  metadata:
+    max-request: 2
+  name: BIGIP - Detection
   reference:
-    - https://www.intelisecure.com/how-to-decode-big-ip-f5-persistence-cookie-values
-    - https://support.f5.com/csp/article/K23254150
-  tags: bigip,tech
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    host-redirects: true
-    matchers:
-      - type: word
-        part: header
-        words:
-          - 'BIGipServer~'
-
-    extractors:
-      - type: regex
-        part: header
-        group: 1
-        regex:
-          - '(BIGipServer[a-z\_\.\-\~0-9A-Z]*)=([!a-z0-9A-Z/.=]+)'
+  - https://www.intelisecure.com/how-to-decode-big-ip-f5-persistence-cookie-values
+  - https://support.f5.com/csp/article/K23254150
+  severity: info
+  tags: bigip,tech,f5
