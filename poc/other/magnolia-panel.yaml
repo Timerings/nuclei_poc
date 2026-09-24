@@ -1,34 +1,33 @@
-http:
-- matchers:
-  - part: body
-    type: word
-    words:
-    - Magnolia is a registered trademark
-  - part: header
-    type: word
-    words:
-    - text/html
-  matchers-condition: and
-  method: GET
-  path:
-  - '{{BaseURL}}'
-  - '{{BaseURL}}/.magnolia/admincentral'
-  stop-at-first-match: true
 id: magnolia-panel
-info:
-  author: pussycat0x
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  description: 'Magnolia CMS login panel was detected.
 
-    '
-  metadata:
-    max-request: 2
-    shodan-query: html:"Magnolia is a registered trademark"
-    verified: true
-  name: Magnolia CMS Login Panel - Detect
-  reference:
-  - https://www.magnolia-cms.com/
+info:
+  name: Magnolia Panel - Detect
+  author: pussycat0x
   severity: info
+  description: |
+    Magnolia CMS is a powerful and versatile content management system that provides users with a host of features and options for web development. It offers a wide range of capabilities to help create a website that is both attractive and effective.
+  reference:
+    - https://www.magnolia-cms.com/
+  metadata:
+    verified: "true"
+    shodan-query: html:"Magnolia is a registered trademark"
   tags: magnolia,panel,login
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/.magnolia/admincentral"
+
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - 'Magnolia is a registered trademark'
+
+      - type: word
+        part: header
+        words:
+          - "text/html"

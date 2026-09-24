@@ -1,34 +1,37 @@
-http:
-- matchers:
-  - condition: and
-    part: body
-    type: word
-    words:
-    - <title>Harbor</title>
-    - <harbor-app>
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  method: GET
-  path:
-  - '{{BaseURL}}'
 id: harbor-panel
+
 info:
-  author: daffainfo
-  classification:
-    cpe: cpe:2.3:a:linuxfoundation:harbor:*:*:*:*:*:*:*:*
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  description: Harbor login panel was detected.
-  metadata:
-    max-request: 1
-    product: harbor
-    shodan-query: http.favicon.hash:657337228
-    vendor: linuxfoundation
-    verified: true
   name: Harbor Login Panel - Detect
-  reference:
-  - https://github.com/goharbor/harbor
+  author: daffainfo
   severity: info
-  tags: panel,harbor,linuxfoundation
+  description: Harbor login panel was detected.
+  reference:
+    - https://github.com/goharbor/harbor
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0.0
+    cwe-id: CWE-200
+  metadata:
+    verified: true
+    shodan-query: http.favicon.hash:657337228
+  tags: panel,harbor
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}'
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<title>Harbor</title>"
+          - "<harbor-app>"
+        condition: and
+
+      - type: status
+        status:
+          - 200
+
+# Enhanced by md on 2022/11/16

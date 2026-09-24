@@ -1,23 +1,26 @@
-http:
-- matchers:
-  - part: body
-    type: word
-    words:
-    - GitHub Debug
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  method: GET
-  path:
-  - '{{BaseURL}}'
 id: github-debug
+
 info:
-  author: ritikchaddha
-  metadata:
-    max-request: 1
-    shodan-query: http.title:"GitHub Debug"
-    verified: true
   name: GitHub Debug Page
-  severity: medium
-  tags: github,debug,cloud
+  author: ritikchaddha
+  severity: info
+  metadata:
+    verified: true
+    shodan-query: http.title:"GitHub Debug"
+  tags: misconfig,github,debug
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}'
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "GitHub Debug"
+
+      - type: status
+        status:
+          - 200

@@ -1,21 +1,23 @@
-http:
-- matchers:
-  - part: body
-    type: word
-    words:
-    - <title>Swagger-Bootstrap-UI</title>
-  method: GET
-  path:
-  - '{{BaseURL}}/jeecg-boot/'
 id: jeecg-boot-swagger
+
 info:
-  author: ritikchaddha
-  metadata:
-    fofa-query: "title=\"JeecgBoot \u4F01\u4E1A\u7EA7\u4F4E\u4EE3\u7801\u5E73\u53F0\
-      \""
-    max-req: 1
-    shodan-query: title:"Jeecg-Boot"
-    verified: 'true'
   name: Jeecg Boot Swagger Bootstrap UI - Detect
+  author: ritikchaddha
   severity: info
+  metadata:
+    max-req: 1
+    verified: "true"
+    shodan-query: title:"Jeecg-Boot"
+    fofa-query: title="JeecgBoot 企业级低代码平台"
   tags: jeecg,swagger,detect,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/jeecg-boot/"
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "<title>Swagger-Bootstrap-UI</title>"
